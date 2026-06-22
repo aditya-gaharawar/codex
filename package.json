@@ -1,11 +1,19 @@
 {
-  "name": "codex-monorepo",
+  "name": "@wsai/code",
   "private": true,
-  "description": "Tools for repo-wide maintenance.",
+  "description": "WSAI CODE — Your AI coding agent, powered by OpenAI",
+  "author": "WSAI",
+  "homepage": "https://github.com/wsai/wsai-code",
+  "bugs": "https://github.com/wsai/wsai-code/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wsai/wsai-code"
+  },
+  "keywords": ["wsai-code", "wsai", "ai-agent"],
   "scripts": {
     "format": "prettier --check *.json *.md docs/*.md .github/workflows/*.yml **/*.js",
     "format:fix": "prettier --write *.json *.md docs/*.md .github/workflows/*.yml **/*.js",
-    "write-hooks-schema": "cargo run --manifest-path ./codex-rs/Cargo.toml -p codex-hooks --bin write_hooks_schema_fixtures"
+    "write-hooks-schema": "cargo run --manifest-path ./wsai-code-rs/Cargo.toml -p codex-hooks --bin write_hooks_schema_fixtures"
   },
   "devDependencies": {
     "prettier": "^3.5.3"

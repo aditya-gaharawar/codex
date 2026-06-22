@@ -49,7 +49,7 @@ def rust_formatter_group(*, check: bool) -> FormatterGroup:
     # for each crate, so suppress that expected stderr noise.
     command = Command(
         tuple(args),
-        REPO_ROOT / "codex-rs",
+        REPO_ROOT / "wsai-code-rs",
         discard_stderr=True,
     )
     return FormatterGroup("Rust", (command,))

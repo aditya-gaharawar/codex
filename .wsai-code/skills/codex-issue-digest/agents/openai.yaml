@@ -1,0 +1,4 @@
+interface:
+  display_name: "WSAI CODE Issue Digest"
+  short_description: "Summarize WSAI CODE issues by labels or all areas"
+  default_prompt: "Use $codex-issue-digest to run the WSAI CODE issue digest for labels tui and exec over the previous 24 hours."

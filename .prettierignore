@@ -1,5 +1,5 @@
-/codex-cli/dist
-/codex-cli/node_modules
+/wsai-code-cli/dist
+/wsai-code-cli/node_modules
 pnpm-lock.yaml
 
 prompt.md

@@ -1,4 +1,4 @@
-set working-directory := "codex-rs"
+set working-directory := "wsai-code-rs"
 set positional-arguments
 export JUST_SHELL := justfile_directory() / "scripts/just-shell.py"
 set shell := ["python3", "-c", 'import os, runpy; runpy.run_path(os.environ["JUST_SHELL"], run_name="__main__")']
@@ -11,14 +11,14 @@ python := if os_family() == "windows" { "python" } else { "python3" }
 help:
     just -l
 
-# `codex`
-alias c := codex
-codex *args:
-    cargo run --bin codex -- {args}
+# `wsai-code`
+alias c := wsai-code
+wsai-code *args:
+    cargo run --bin wsai-code -- {args}
 
-# `codex exec`
+# `wsai-code exec`
 exec *args:
-    cargo run --bin codex -- exec {args}
+    cargo run --bin wsai-code -- exec {args}
 
 # Start `codex exec-server` and run codex-tui.
 [no-cd]
@@ -29,12 +29,12 @@ tui-with-exec-server *args:
 
 # Run the CLI version of the file-search crate.
 file-search *args:
-    cargo run --bin codex-file-search -- {args}
+    cargo run --bin wsai-code-file-search -- {args}
 
 # Build the CLI and run the app-server test client
 app-server-test-client *args:
     cargo build -p codex-cli
-    cargo run -p codex-app-server-test-client -- --codex-bin ./target/debug/codex {args}
+    cargo run -p codex-app-server-test-client -- --wsai-code-bin ./target/debug/wsai-code {args}
 
 # Format the justfile, Rust, Bazel/Starlark, Python SDK code, and Python scripts.
 fmt:
@@ -100,12 +100,12 @@ bench-smoke:
 # the command in the current working directory.
 [no-cd]
 [unix]
-bazel-codex *args:
-    bazel run //codex-rs/cli:codex --run_under="cd $PWD &&" -- "$@"
+bazel-wsai-code *args:
+    bazel run //wsai-code-rs/cli:wsai-code --run_under="cd $PWD &&" -- "$@"
 
 [windows]
-bazel-codex *args:
-    bazel run //codex-rs/cli:codex --run_under='cd /d "{{ invocation_directory_native() }}" &&' -- @($args | Select-Object -Skip 1)
+bazel-wsai-code *args:
+    bazel run //wsai-code-rs/cli:wsai-code --run_under='cd /d "{{ invocation_directory_native() }}" &&' -- @($args | Select-Object -Skip 1)
 
 [no-cd]
 bazel-lock-update:
@@ -134,7 +134,7 @@ bazel-argument-comment-lint:
     bazel build --config=argument-comment-lint -- $({{ justfile_directory() }}/tools/argument-comment-lint/list-bazel-targets.sh)
 
 build-for-release:
-    bazel build //codex-rs/cli:release_binaries
+    bazel build //wsai-code-rs/cli:release_binaries
 
 # Run the MCP server
 mcp-server-run *args:
@@ -142,7 +142,7 @@ mcp-server-run *args:
 
 # Regenerate the json schema for config.toml from the current config types.
 write-config-schema:
-    cargo run -p codex-core --bin codex-write-config-schema
+    cargo run -p codex-core --bin wsai-code-write-config-schema
 
 # Regenerate vendored app-server protocol schema artifacts.
 write-app-server-schema *args:
@@ -150,9 +150,9 @@ write-app-server-schema *args:
 
 [no-cd]
 write-hooks-schema:
-    cargo run --manifest-path {{ justfile_directory() }}/codex-rs/Cargo.toml -p codex-hooks --bin write_hooks_schema_fixtures
+    cargo run --manifest-path {{ justfile_directory() }}/wsai-code-rs/Cargo.toml -p codex-hooks --bin write_hooks_schema_fixtures
 
-# Run the argument-comment Dylint checks across codex-rs.
+# Run the argument-comment Dylint checks across wsai-code-rs.
 [no-cd]
 [unix]
 argument-comment-lint *args:

@@ -1,6 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/devcontainers/spec/main/schemas/devContainer.schema.json",
-  "name": "Codex (Secure)",
+  "name": "WSAI CODE (Secure)",
   "build": {
     "dockerfile": "Dockerfile.secure",
     "context": "..",
@@ -8,7 +8,7 @@
       "TZ": "${localEnv:TZ:UTC}",
       "NODE_MAJOR": "22",
       "RUST_TOOLCHAIN": "1.95.0",
-      "CODEX_NPM_VERSION": "0.121.0"
+      "WSAI_CODE_NPM_VERSION": "0.121.0"
     }
   },
   "runArgs": [
@@ -41,9 +41,9 @@
   ],
   "containerEnv": {
     "RUST_BACKTRACE": "1",
-    "CODEX_UNSAFE_ALLOW_NO_SANDBOX": "1",
-    "CODEX_ENABLE_FIREWALL": "1",
-    "CODEX_INCLUDE_GITHUB_META_RANGES": "1",
+    "WSAI_CODE_UNSAFE_ALLOW_NO_SANDBOX": "1",
+    "WSAI_CODE_ENABLE_FIREWALL": "1",
+    "WSAI_CODE_INCLUDE_GITHUB_META_RANGES": "1",
     "OPENAI_ALLOWED_DOMAINS": "api.openai.com auth.openai.com github.com api.github.com codeload.github.com raw.githubusercontent.com objects.githubusercontent.com crates.io index.crates.io static.crates.io static.rust-lang.org registry.npmjs.org pypi.org files.pythonhosted.org",
     "CARGO_TARGET_DIR": "/workspace/.cache/cargo-target",
     "GIT_CONFIG_GLOBAL": "/home/vscode/.gitconfig.local",

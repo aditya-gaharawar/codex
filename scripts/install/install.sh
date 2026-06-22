@@ -2,13 +2,13 @@
 
 set -eu
 
-RELEASE="${CODEX_RELEASE:-latest}"
-NON_INTERACTIVE="${CODEX_NON_INTERACTIVE:-false}"
+RELEASE="${WSAI_CODE_RELEASE:-latest}"
+NON_INTERACTIVE="${WSAI_CODE_NON_INTERACTIVE:-false}"
 
-BIN_DIR="${CODEX_INSTALL_DIR:-$HOME/.local/bin}"
+BIN_DIR="${WSAI_CODE_INSTALL_DIR:-$HOME/.local/bin}"
 BIN_PATH="$BIN_DIR/codex"
-CODEX_HOME_DIR="${CODEX_HOME:-$HOME/.codex}"
-STANDALONE_ROOT="$CODEX_HOME_DIR/packages/standalone"
+WSAI_CODE_HOME_DIR="${WSAI_CODE_HOME:-$HOME/.codex}"
+STANDALONE_ROOT="$WSAI_CODE_HOME_DIR/packages/standalone"
 RELEASES_DIR="$STANDALONE_ROOT/releases"
 CURRENT_LINK="$STANDALONE_ROOT/current"
 LOCK_FILE="$STANDALONE_ROOT/install.lock"
@@ -76,8 +76,8 @@ parse_args() {
 Usage: install.sh [--release VERSION]
 
 Environment:
-  CODEX_RELEASE          Version to install; overridden by --release.
-  CODEX_NON_INTERACTIVE  Set to 1, true, or yes to skip prompts.
+  WSAI_CODE_RELEASE          Version to install; overridden by --release.
+  WSAI_CODE_NON_INTERACTIVE  Set to 1, true, or yes to skip prompts.
 EOF
         exit 0
         ;;
@@ -129,7 +129,7 @@ release_url_for_asset() {
   asset="$1"
   resolved_version="$2"
 
-  printf 'https://github.com/openai/codex/releases/download/rust-v%s/%s\n' "$resolved_version" "$asset"
+  printf 'https://github.com/wsai/wsai-code/releases/download/rust-v%s/%s\n' "$resolved_version" "$asset"
 }
 
 release_metadata_url() {
@@ -651,10 +651,10 @@ handle_conflicting_install() {
       uninstall_cmd="brew uninstall --cask codex"
       ;;
     bun)
-      uninstall_cmd="bun remove -g @openai/codex"
+      uninstall_cmd="bun remove -g @wsai/code"
       ;;
     *)
-      uninstall_cmd="npm uninstall -g @openai/codex"
+      uninstall_cmd="npm uninstall -g @wsai/code"
       ;;
   esac
 

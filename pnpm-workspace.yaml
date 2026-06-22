@@ -1,7 +1,7 @@
 packages:
-  - codex-cli
-  - codex-rs/responses-api-proxy/npm
-  - sdk/typescript
+  - wsai-code-cli
+  - wsai-code-rs/responses-api-proxy/npm
+  - wsai-code-sdk/typescript
 
 ignoredBuiltDependencies:
   - esbuild

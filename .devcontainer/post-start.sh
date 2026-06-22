@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-if [ "${CODEX_ENABLE_FIREWALL:-1}" != "1" ]; then
-  echo "[devcontainer] Firewall mode: permissive (CODEX_ENABLE_FIREWALL=${CODEX_ENABLE_FIREWALL:-unset})."
+if [ "${WSAI_CODE_ENABLE_FIREWALL:-1}" != "1" ]; then
+  echo "[devcontainer] Firewall mode: permissive (WSAI_CODE_ENABLE_FIREWALL=${WSAI_CODE_ENABLE_FIREWALL:-unset})."
   exit 0
 fi
 
@@ -33,4 +33,4 @@ sudo chmod 0444 /etc/codex/allowed_domains.txt
 rm -f "$tmp_file"
 
 echo "[devcontainer] Applying firewall policy for domains: ${domains[*]}"
-sudo --preserve-env=CODEX_INCLUDE_GITHUB_META_RANGES /usr/local/bin/init-firewall.sh
+sudo --preserve-env=WSAI_CODE_INCLUDE_GITHUB_META_RANGES /usr/local/bin/init-firewall.sh

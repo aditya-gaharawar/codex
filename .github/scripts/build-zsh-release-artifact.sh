@@ -34,8 +34,8 @@ make -j"${cores}"
 cat > "$wrapper_path" <<'EOF'
 #!/usr/bin/env bash
 set -euo pipefail
-: "${CODEX_WRAPPER_LOG:?missing CODEX_WRAPPER_LOG}"
-printf '%s\n' "$@" > "$CODEX_WRAPPER_LOG"
+: "${WSAI_CODE_WRAPPER_LOG:?missing WSAI_CODE_WRAPPER_LOG}"
+printf '%s\n' "$@" > "$WSAI_CODE_WRAPPER_LOG"
 file="$1"
 shift
 if [[ "$#" -eq 0 ]]; then
@@ -47,7 +47,7 @@ exec -a "$arg0" "$file" "$@"
 EOF
 chmod +x "$wrapper_path"
 
-CODEX_WRAPPER_LOG="$wrapper_log_path" \
+WSAI_CODE_WRAPPER_LOG="$wrapper_log_path" \
 EXEC_WRAPPER="$wrapper_path" \
 "${source_root}/Src/zsh" -fc '/bin/echo smoke-zsh' > "$stdout_path"
 
